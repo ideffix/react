@@ -513,6 +513,13 @@ export function setInitialProperties(
       props = rawProps;
       break;
     case 'img':
+      // We listen to these events in case to ensure emulated bubble
+      // listeners still fire for error, load and loadstart events.
+      listenToNonDelegatedEvent('error', domElement);
+      listenToNonDelegatedEvent('load', domElement);
+      listenToNonDelegatedEvent('loadstart', domElement);
+      props = rawProps;
+      break;
     case 'image':
     case 'link':
       // We listen to these events in case to ensure emulated bubble
